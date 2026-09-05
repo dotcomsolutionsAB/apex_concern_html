@@ -1,117 +1,61 @@
+/**
+ * main.js — per-page orchestrator. Mounts the shared header/footer on
+ * every page, then mounts and initialises homepage-only sections.
+ * Actual markup comes from render.js; actual data comes from data.js.
+ */
 (function () {
-  const company = {
-    name: "Apex Engineering Concern",
-    shortName: "Apex Concern",
-    phonePrimary: "+91 33 46019249",
-    phoneMobile: "9903468068",
-    whatsapp: "918697623530",
-    email: "apexconcern@hotmail.com",
-    address: "38, Netaji Subhas Road, Ground Floor, Kolkata - 700001",
-    gst: "19AAFFA6911P1Z1",
-  };
+  "use strict";
 
-  const page = document.body.dataset.page || "home";
+  var page = document.body.dataset.page || "home";
 
-  function headerHTML() {
-    return `
-      <a class="skip-link" href="#main">Skip to content</a>
-      <div class="topbar">
-        <div class="container topbar-inner">
-          <div class="topbar-links">
-            <a href="tel:+913346019249"><i class="fa-solid fa-phone"></i> ${company.phonePrimary} | ${company.phoneMobile}</a>
-            <a href="mailto:${company.email}"><i class="fa-regular fa-envelope"></i> ${company.email}</a>
-          </div>
-          <a href="https://wa.me/${company.whatsapp}" target="_blank" rel="noopener">
-            <i class="fa-brands fa-whatsapp"></i> WhatsApp
-          </a>
-        </div>
-      </div>
-      <header class="site-header">
-        <div class="container header-inner">
-          <a class="brand" href="index.html" aria-label="${company.name} home">
-            <img src="images/brand/apex-logo.png" alt="${company.name}">
-            <span class="brand-copy">
-              <span class="brand-name">${company.shortName}</span>
-              <span class="brand-tag">Process control instrumentation</span>
-            </span>
-          </a>
-          <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false">
-            <span></span>
-          </button>
-          <nav class="site-nav" aria-label="Primary">
-            <a href="index.html" class="${page === "home" ? "is-active" : ""}">Home</a>
-            <a href="about.html" class="${page === "about" ? "is-active" : ""}">About Us</a>
-            <a href="products.html" class="${page === "products" ? "is-active" : ""}">Products</a>
-            <a href="contact.html" class="${page === "contact" ? "is-active" : ""}">Contact Us</a>
-            <a class="btn btn-primary" href="contact.html">Enquire Now</a>
-          </nav>
-        </div>
-      </header>
-    `;
+  var headerMount = document.getElementById("site-header");
+  var footerMount = document.getElementById("site-footer");
+  if (headerMount) headerMount.outerHTML = SiteRender.header(page);
+  if (footerMount) footerMount.outerHTML = SiteRender.footer();
+
+  // Product detail modal shell — shared across every page that can render
+  // a product card (home's featured carousel, the products grid).
+  if (!document.getElementById("product-modal")) {
+    document.body.insertAdjacentHTML("beforeend", SiteRender.productModalShell());
+  }
+  if (!document.getElementById("image-lightbox")) {
+    document.body.insertAdjacentHTML("beforeend", SiteRender.imageLightboxShell());
   }
 
-  function footerHTML() {
-    return `
-      <footer class="site-footer">
-        <div class="container">
-          <div class="footer-grid">
-            <div class="footer-brand">
-              <img src="images/brand/apex-logo.png" alt="${company.name}">
-              <p>Trusted source for pressure, flow, temperature, and level measurement instruments. Genuine industrial products, competitive pricing, and reliable technical support.</p>
-            </div>
-            <div>
-              <h3>Explore</h3>
-              <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="products.html">Products</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3>Focus areas</h3>
-              <ul>
-                <li>Pressure measurement</li>
-                <li>Temperature control</li>
-                <li>Flow instruments</li>
-                <li>Level measurement</li>
-              </ul>
-            </div>
-            <div>
-              <h3>Visit us</h3>
-              <p>${company.address}</p>
-              <p><a href="tel:+913346019249">${company.phonePrimary}</a><br>
-              <a href="tel:+919903468068">${company.phoneMobile}</a></p>
-              <p><a href="mailto:${company.email}">${company.email}</a></p>
-            </div>
-          </div>
-          <div class="legal">© ${new Date().getFullYear()} ${company.name}. All rights reserved.</div>
-        </div>
-      </footer>
-    `;
+  if (page === "home") {
+    var heroMount = document.getElementById("hero-mount");
+    var featureMount = document.getElementById("feature-boxes-mount");
+    var categoryMount = document.getElementById("category-showcase-mount");
+    var capabilitiesMount = document.getElementById("capabilities-mount");
+    var brandsMount = document.getElementById("our-brands-mount");
+    var whyMount = document.getElementById("why-choose-us-mount");
+    var featuredMount = document.getElementById("featured-products-mount");
+    var ctaMount = document.getElementById("cta-band-mount");
+
+    if (heroMount) heroMount.outerHTML = SiteRender.heroSlider();
+    if (featureMount) featureMount.outerHTML = SiteRender.featureBoxes();
+    if (categoryMount) categoryMount.outerHTML = SiteRender.categoryShowcase();
+    if (capabilitiesMount) capabilitiesMount.outerHTML = SiteRender.capabilitiesAlternating();
+    if (brandsMount) brandsMount.outerHTML = SiteRender.ourBrands();
+    if (whyMount) whyMount.outerHTML = SiteRender.whyChooseUs();
+    if (featuredMount) featuredMount.outerHTML = SiteRender.featuredProducts();
+    if (ctaMount) ctaMount.outerHTML = SiteRender.ctaBand();
+
+    var heroEl = document.getElementById("hero-slider");
+    if (heroEl && window.HeroSlider) new HeroSlider(heroEl);
+
+    var carouselEl = document.getElementById("featured-carousel");
+    if (carouselEl && window.Carousel) new Carousel(carouselEl);
   }
 
-  const headerMount = document.getElementById("site-header");
-  const footerMount = document.getElementById("site-footer");
-  if (headerMount) headerMount.outerHTML = headerHTML();
-  if (footerMount) footerMount.outerHTML = footerHTML();
-
-  const toggle = document.querySelector(".nav-toggle");
-  const nav = document.querySelector(".site-nav");
-  if (toggle && nav) {
-    toggle.addEventListener("click", function () {
-      const open = nav.classList.toggle("is-open");
-      toggle.setAttribute("aria-expanded", String(open));
-    });
+  if (page === "products") {
+    var productsMount = document.getElementById("products-mount");
+    if (productsMount) productsMount.outerHTML = '<div id="products-mount">' + SiteRender.productGrid() + "</div>";
   }
 
-  const form = document.getElementById("enquiry-form");
-  if (form) {
-    form.addEventListener("submit", function (event) {
-      event.preventDefault();
-      const note = document.getElementById("form-note");
-      if (note) note.classList.add("is-visible");
-      form.reset();
-    });
+  // Any page may include a bare CTA band mount point (about/contact/products).
+  if (page !== "home") {
+    var genericCta = document.getElementById("cta-band-mount");
+    if (genericCta) genericCta.outerHTML = SiteRender.ctaBand();
   }
 })();

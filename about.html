@@ -8,9 +8,9 @@
   <link rel="icon" type="image/png" href="images/brand/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=1788582566">
 </head>
 <body data-page="about">
   <div id="site-header"></div>
@@ -18,7 +18,7 @@
   <main id="main">
     <section class="page-hero">
       <div class="container">
-        <div class="kicker" style="color:#c9d4ee;">Who we are</div>
+        <div class="eyebrow-row"><span class="slash" aria-hidden="true"></span><span class="eyebrow-text" style="color:#c9d4ee;">Who We Are</span></div>
         <h1>About Apex Engineering Concern</h1>
         <p>Your trusted source for pressure, flow, temperature, and level measurement instruments.</p>
       </div>
@@ -43,29 +43,38 @@
 
     <section class="section bg-paper">
       <div class="container">
-        <div class="section-head center">
-          <div class="kicker">How we work</div>
+        <div class="section-heading is-center">
+          <div class="eyebrow-row"><span class="slash" aria-hidden="true"></span><span class="eyebrow-text">How We Work</span></div>
           <h2>What customers can expect</h2>
         </div>
         <div class="cards-3">
-          <article class="card capability">
+          <article class="card capability reveal">
+            <div class="capability-icon"><i class="fa-solid fa-certificate"></i></div>
             <h3>Genuine industrial products</h3>
             <p>Authentic pressure, flow, temperature, and level measurement instruments from trusted brands.</p>
           </article>
-          <article class="card capability">
+          <article class="card capability reveal" style="transition-delay:90ms">
+            <div class="capability-icon"><i class="fa-solid fa-truck-fast"></i></div>
             <h3>Reliable delivery</h3>
             <p>Consistent, on-time fulfilment for industrial and commercial customers, including time-bound project supply.</p>
           </article>
-          <article class="card capability">
+          <article class="card capability reveal" style="transition-delay:180ms">
+            <div class="capability-icon"><i class="fa-solid fa-headset"></i></div>
             <h3>Technical support</h3>
             <p>Knowledgeable, responsive support to help you choose and use the right instrumentation.</p>
           </article>
         </div>
       </div>
     </section>
+
+    <div id="cta-band-mount"></div>
   </main>
 
   <div id="site-footer"></div>
-  <script src="js/main.js"></script>
+
+  <script src="js/data.js?v=1788582566"></script>
+  <script src="js/render.js?v=1788582566"></script>
+  <script src="js/main.js?v=1788582566"></script>
+  <script src="js/interactions.js?v=1788582566"></script>
 </body>
 </html>

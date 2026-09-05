@@ -8,9 +8,9 @@
   <link rel="icon" type="image/png" href="images/brand/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=1788582566">
 </head>
 <body data-page="contact">
   <div id="site-header"></div>
@@ -18,7 +18,7 @@
   <main id="main">
     <section class="page-hero">
       <div class="container">
-        <div class="kicker" style="color:#c9d4ee;">Get in touch</div>
+        <div class="eyebrow-row"><span class="slash" aria-hidden="true"></span><span class="eyebrow-text" style="color:#c9d4ee;">Get In Touch</span></div>
         <h1>Contact us</h1>
         <p>Have a question about a product, a project supply, or anything else? Reach the Apex team using the details below.</p>
       </div>
@@ -27,22 +27,22 @@
     <section class="section bg-paper">
       <div class="container contact-grid">
         <div>
-          <article class="card info-card">
+          <article class="card info-card reveal">
             <h3>WhatsApp / Call</h3>
             <p><a href="tel:+913346019249">+91 33 46019249</a><br>
             <a href="tel:+919903468068">9903468068</a></p>
           </article>
-          <article class="card info-card" style="margin-top:16px;">
+          <article class="card info-card reveal" style="margin-top:16px;transition-delay:80ms">
             <h3>Email</h3>
             <p><a href="mailto:apexconcern@hotmail.com">apexconcern@hotmail.com</a></p>
           </article>
-          <article class="card info-card" style="margin-top:16px;">
+          <article class="card info-card reveal" style="margin-top:16px;transition-delay:160ms">
             <h3>Office address</h3>
             <p>38, Netaji Subhas Road, Ground Floor<br>Kolkata - 700001, West Bengal, India</p>
           </article>
         </div>
 
-        <form class="card enquiry-form" id="enquiry-form">
+        <form class="card enquiry-form reveal" id="enquiry-form">
           <h3>Send an enquiry</h3>
           <p class="lead">Tell us the instrument or application. This form is a front-end starter and does not yet submit to a server.</p>
           <div class="form-row">
@@ -69,13 +69,7 @@
             <label for="product">Product of interest</label>
             <select id="product" name="product">
               <option value="">Select a product</option>
-              <option>Metrix+ GLS 09M Digital Gloss Meter</option>
-              <option>Metrix+ DT 2239 Digital Stroboscope</option>
-              <option>Metrix+ MT 16 Infrared Thermometer</option>
-              <option>Metrix+ ULD 30</option>
-              <option>Metrix+ RHT A Hardness Tester</option>
-              <option>Metrix+ DM 620 Digital Multimeter</option>
-              <option>Other / not listed</option>
+              <option value="Other / not listed">Other / not listed</option>
             </select>
           </div>
           <div class="field">
@@ -96,6 +90,25 @@
   </main>
 
   <div id="site-footer"></div>
-  <script src="js/main.js"></script>
+
+  <script src="js/data.js?v=1788582566"></script>
+  <script src="js/render.js?v=1788582566"></script>
+  <script src="js/main.js?v=1788582566"></script>
+  <script>
+    // Populate the product-of-interest select from the shared product data
+    // instead of a second hardcoded list.
+    (function () {
+      var select = document.getElementById("product");
+      if (!select || !window.SiteData) return;
+      var otherOption = select.querySelector('option[value="Other / not listed"]');
+      SiteData.products.forEach(function (p) {
+        var opt = document.createElement("option");
+        opt.value = p.name;
+        opt.textContent = p.name;
+        select.insertBefore(opt, otherOption);
+      });
+    })();
+  </script>
+  <script src="js/interactions.js?v=1788582566"></script>
 </body>
 </html>
