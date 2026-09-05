@@ -20,8 +20,8 @@
       "Genuine Metrix+ electrical, environmental, surveying and NDT test & measurement instruments — with competitive pricing and reliable technical support for industrial and commercial customers.",
     phonePrimary: "+91 33 46019249",
     phonePrimaryHref: "+913346019249",
-    phoneMobile: "9903468068",
-    phoneMobileHref: "+919903468068",
+    phoneMobile: "+91 86976 23530",
+    phoneMobileHref: "+918697623530",
     whatsapp: "918697623530",
     email: "apexconcern@hotmail.com",
     address: "38, Netaji Subhas Road, Ground Floor",
@@ -154,7 +154,7 @@
     "heading": "Liquid Filled Pressure Gauges",
     "icon": "fa-solid fa-gauge",
     "image": "https://www.microprocesscontrols.com/xhtml/images/products/pressure-gauge/liquid-filled/5.jpg",
-    "text": "Glycerin-filled Bourdon tube pressure gauges from \u00d840mm to \u00d8300mm dial sizes, with SS 316 wetted parts and ranges up to 3500 bar, for vibration-prone process and hydraulic applications.",
+    "text": "Glycerin-filled Bourdon tube pressure gauges from Ø40mm to Ø300mm dial sizes, with SS 316 wetted parts and ranges up to 3500 bar, for vibration-prone process and hydraulic applications.",
     "brand": "micro"
   },
   {

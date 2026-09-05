@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "Bodoni MT Poster Compressed";
+  src: url("../fonts/BOD_PSTC.TTF") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --navy: #0b1f5c;
   --navy-deep: #07143d;
@@ -20,8 +28,8 @@
   --header-h: 96px;
   --header-h-scrolled: 72px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --font: "IBM Plex Sans", "Segoe UI", sans-serif;
-  --serif: "IBM Plex Serif", Georgia, serif;
+  --font: "Bodoni MT Poster Compressed", "IBM Plex Sans", "Segoe UI", sans-serif;
+  --serif: "Bodoni MT Poster Compressed", "IBM Plex Serif", Georgia, serif;
 }
 
 *,
@@ -32,6 +40,8 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
@@ -1661,8 +1671,10 @@ h2 {
   box-shadow: var(--shadow-lg);
   max-width: 920px;
   width: 100%;
+  min-width: 0;
   max-height: 88vh;
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 40px;
   transform: translateY(18px) scale(0.98);
   transition: transform 0.3s var(--ease);
@@ -1702,6 +1714,7 @@ body.modal-open {
   grid-template-columns: 0.85fr 1.15fr;
   gap: 32px;
   align-items: start;
+  min-width: 0;
 }
 
 .modal-media {
@@ -1711,6 +1724,7 @@ body.modal-open {
   aspect-ratio: 1 / 1;
   background: #eef2f8;
   border-radius: var(--radius);
+  min-width: 0;
   overflow: hidden;
 }
 
@@ -1720,6 +1734,10 @@ body.modal-open {
   width: calc(100% - 48px);
   height: calc(100% - 48px);
   object-fit: contain !important;
+}
+
+.modal-info {
+  min-width: 0;
 }
 
 .modal-media.is-placeholder {
@@ -2169,21 +2187,28 @@ body.modal-open {
   width: 16px;
 }
 
-/* Phone and email are both short, so they share one row instead of a line
-   each — only the address (which wraps) keeps its own line. */
-.footer-contact-inline {
+/* Address, phone and email all run together as one wrapping row instead of
+   three stacked lines — it only breaks onto a second line where the column
+   genuinely isn't wide enough (e.g. narrow mobile). */
+.footer-contact-oneline {
+  display: flex;
   flex-wrap: wrap;
-  column-gap: 20px;
   row-gap: 8px;
+  column-gap: 24px;
 }
 
-.footer-contact-inline a {
+.footer-contact-oneline li {
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+.footer-contact-oneline a {
   display: inline-flex;
   align-items: center;
   gap: 10px;
 }
 
-.footer-contact-inline i {
+.footer-contact-oneline i {
   margin-top: 0;
 }
 
@@ -2210,11 +2235,26 @@ body.modal-open {
 }
 
 .legal {
+  font-size: 13px;
+}
+
+/* Full-width bar under the four footer columns — address, phone and email
+   get the whole page width to line up on, the same way the header's own
+   top utility bar fits phone/email/WhatsApp on one line. Far more room
+   than squeezing all three into one narrow column. */
+.footer-bottom {
   margin-top: 44px;
   padding-top: 20px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  font-size: 13px;
-  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px 24px;
+}
+
+.footer-bottom .footer-contact-oneline {
+  margin-top: 0;
 }
 
 /* ============ Back to top ============ */
@@ -2408,6 +2448,25 @@ body.modal-open {
   .feature-grid,
   .strength-grid {
     grid-template-columns: 1fr;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-contact-oneline {
+    justify-content: center;
+  }
+
+  /* The address is the one line that's genuinely too long for a narrow
+     screen — give it the full row (where it can wrap normally) instead of
+     letting it force horizontal overflow; phone and email still share the
+     row below it. */
+  .footer-contact-oneline li:first-child {
+    flex-basis: 100%;
+    justify-content: center;
   }
 
   .category-card {

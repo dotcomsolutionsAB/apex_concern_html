@@ -239,13 +239,6 @@
       '<img src="images/brand/apex-logo.png" alt="' + c.name + '">' +
       "<p>" + c.descriptionShort + "</p>" +
       brandBadge("footer-metrix-badge") +
-      '<ul class="footer-contact">' +
-      '<li><i class="fa-solid fa-location-dot"></i><span>' + c.address + ", " + c.addressCity + "</span></li>" +
-      '<li class="footer-contact-inline">' +
-      '<a href="tel:' + c.phonePrimaryHref + '"><i class="fa-solid fa-phone"></i>' + c.phonePrimary + "</a>" +
-      '<a href="mailto:' + c.email + '"><i class="fa-regular fa-envelope"></i>' + c.email + "</a>" +
-      "</li>" +
-      "</ul>" +
       "</div>" +
       '<div class="footer-col">' +
       '<h3>Explore</h3><span class="footer-rule"></span>' +
@@ -266,7 +259,14 @@
       '<a class="footer-whatsapp" href="https://wa.me/' + c.whatsapp + '" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a>' +
       "</div>" +
       "</div>" +
+      '<div class="footer-bottom">' +
+      '<ul class="footer-contact footer-contact-oneline">' +
+      '<li><i class="fa-solid fa-location-dot"></i><span>' + c.address + ", " + c.addressCity + "</span></li>" +
+      '<li><a href="tel:' + c.phonePrimaryHref + '"><i class="fa-solid fa-phone"></i>' + c.phonePrimary + " | " + c.phoneMobile + "</a></li>" +
+      '<li><a href="mailto:' + c.email + '"><i class="fa-regular fa-envelope"></i>' + c.email + "</a></li>" +
+      "</ul>" +
       '<div class="legal">&copy; ' + year + " " + c.name + ". All rights reserved.</div>" +
+      "</div>" +
       "</div>" +
       "</footer>" +
       '<button class="back-to-top" type="button" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>'
