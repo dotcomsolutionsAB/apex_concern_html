@@ -1,11 +1,3 @@
-@font-face {
-  font-family: "Bodoni MT Poster Compressed";
-  src: url("../fonts/BOD_PSTC.TTF") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
 :root {
   --navy: #0b1f5c;
   --navy-deep: #07143d;
@@ -28,8 +20,8 @@
   --header-h: 96px;
   --header-h-scrolled: 72px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --font: "Bodoni MT Poster Compressed", "IBM Plex Sans", "Segoe UI", sans-serif;
-  --serif: "Bodoni MT Poster Compressed", "IBM Plex Serif", Georgia, serif;
+  --font: "IBM Plex Sans", "Segoe UI", sans-serif;
+  --serif: "IBM Plex Serif", Georgia, serif;
 }
 
 *,
